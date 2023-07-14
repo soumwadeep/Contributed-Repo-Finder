@@ -1,7 +1,5 @@
 # Contributed Repo Finder
 
-![Contributed Repo Finder Logo](./icon.webp)
-
 Welcome to Contributed Repo Finder, a React application that allows you to fetch and explore the contributed repositories of a GitHub user. With this app, you can easily discover the repositories and their details with just a few clicks.
 
 ## Features
@@ -44,7 +42,9 @@ To run the Contributed Repo Finder locally, follow these steps:
 
 ## Screenshots
 
-![Contributed Repo Finder Screenshot](./screenshot.png)
+![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/3e7515c3-5ac3-4266-b9cf-6df8fa8a99cf)
+
+![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/9be6816b-96f9-470e-b6ac-b0bec063c0e4)
 
 ## Acknowledgments
 
