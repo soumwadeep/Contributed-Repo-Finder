@@ -42,9 +42,14 @@ To run the Contributed Repo Finder locally, follow these steps:
 
 ## Screenshots
 
-![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/3e7515c3-5ac3-4266-b9cf-6df8fa8a99cf)
+### Home:
+![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/99fd3881-3a0c-4f23-aafa-f9c13c2876a2)
 
-![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/9be6816b-96f9-470e-b6ac-b0bec063c0e4)
+### After Search:
+![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/0aba39ad-322f-4166-a7a8-4543832f6127)
+
+### Pagination & Back To Top Button
+![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/4c663f87-c1df-486e-9402-f3482c486687)
 
 ## Acknowledgments
 
