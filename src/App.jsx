@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import logo from "./icon.webp";
 const App = () => {
   const [username, setUsername] = useState("");
   const [repositories, setRepositories] = useState([]);
@@ -64,7 +64,9 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center">Welcome To Contributed Repo Finder</h1>
+      <h1 className="text-center mb-4">
+        <img src={logo} alt="logo" className="logo"/> Welcome To Contributed Repo Finder
+      </h1>
       <h4 className="text-center mb-3">
         Enter The Github Username Here And Click On Fetch To Fetch The
         Contributed Repos Of The User:

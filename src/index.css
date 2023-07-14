@@ -10,6 +10,10 @@ body {
   font-weight: 900 !important;
 }
 
+.logo {
+  width: 50px;
+}
+
 input {
   height: 3rem;
 }
