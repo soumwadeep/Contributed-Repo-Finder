@@ -99,7 +99,9 @@ const App = () => {
           {repositories.map((repo) => (
             <div className="card mt-5" key={repo.id}>
               <div className="card-body">
-                <h3 className="card-title">{repo.name}</h3>
+                <a href={repo.clone_url} target="_blank" rel="noreferrer">
+                  <h3 className="card-title">{repo.name}</h3>
+                </a>
                 <p className="card-text">{repo.description}</p>
                 <button className="btn btn-info me-4">
                   <i className="fa-regular fa-star iconfix"></i>
@@ -107,7 +109,7 @@ const App = () => {
                 </button>
                 <button className="btn btn-info">
                   <i className="fa-solid fa-code-fork iconfix"></i>
-                  {repo.stargazers_count}
+                  {repo.forks_count}
                 </button>
               </div>
             </div>
