@@ -101,13 +101,14 @@ const App = () => {
         </div>
         {repositories.length > 0 && (
           <div className="mt-4">
-            <button
-              onClick={() => handlePreviousPage(setPage)}
-              className="btn btn-warning me-3"
-              disabled={page === 1}
-            >
-              <i className="fa-solid fa-circle-chevron-left iconfix"></i>
-            </button>
+            {page > 1 && (
+              <button
+                onClick={() => handlePreviousPage(setPage)}
+                className="btn btn-warning me-3"
+              >
+                <i className="fa-solid fa-circle-chevron-left iconfix"></i>
+              </button>
+            )}
             {hasNextPage && (
               <button
                 className="btn btn-warning"
@@ -118,6 +119,7 @@ const App = () => {
             )}
           </div>
         )}
+
         {showBackToTop && (
           <button
             className="btn btn-info sticky-bottom btnpos"
