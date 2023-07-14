@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import {
+  fetchContributedRepositories,
+  handlePreviousPage,
+  handleNextPage,
+  handleScrollToTop,
+} from "./components/FetchContributedRepositories";
 import logo from "./icon.webp";
+import Footer from "./components/Footer";
+
 const App = () => {
   const [username, setUsername] = useState("");
   const [repositories, setRepositories] = useState([]);
@@ -10,7 +17,12 @@ const App = () => {
 
   useEffect(() => {
     if (username !== "") {
-      fetchContributedRepositories();
+      fetchContributedRepositories(
+        username,
+        page,
+        setRepositories,
+        setHasNextPage
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
@@ -22,44 +34,9 @@ const App = () => {
     };
   }, []);
 
-  const fetchContributedRepositories = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.github.com/users/${username}/repos?type=all&page=${page}&per_page=30`
-      );
-      setRepositories(response.data);
-      setHasNextPage(response.data.length === 30);
-    } catch (error) {
-      console.error("Error fetching repositories:", error);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    setPage((prevPage) => prevPage - 1);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  const handleNextPage = () => {
-    setPage((prevPage) => prevPage + 1);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   const handleScroll = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     setShowBackToTop(scrollTop > 0);
-  };
-
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
   };
 
   return (
@@ -90,7 +67,14 @@ const App = () => {
             className="btn btn-info"
             type="button"
             id="button-addon2"
-            onClick={fetchContributedRepositories}
+            onClick={() =>
+              fetchContributedRepositories(
+                username,
+                page,
+                setRepositories,
+                setHasNextPage
+              )
+            }
           >
             Fetch
           </button>
@@ -118,14 +102,17 @@ const App = () => {
         {repositories.length > 0 && (
           <div className="mt-4">
             <button
-              onClick={handlePreviousPage}
+              onClick={() => handlePreviousPage(setPage)}
               className="btn btn-warning me-3"
               disabled={page === 1}
             >
               <i className="fa-solid fa-circle-chevron-left iconfix"></i>
             </button>
             {hasNextPage && (
-              <button className="btn btn-warning" onClick={handleNextPage}>
+              <button
+                className="btn btn-warning"
+                onClick={() => handleNextPage(setPage)}
+              >
                 <i className="fa-solid fa-circle-chevron-right iconfix"></i>
               </button>
             )}
@@ -140,9 +127,7 @@ const App = () => {
           </button>
         )}
       </div>
-      <footer className="text-center mt-3">
-        <h5>Copyright 2023. All Rights Reserved By Contributed Repo Finder.</h5>
-      </footer>
+      <Footer />
     </>
   );
 };
