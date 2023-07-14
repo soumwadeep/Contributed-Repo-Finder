@@ -6,7 +6,6 @@ import {
   handleScrollToTop,
 } from "./components/FetchContributedRepositories";
 import logo from "./icon.webp";
-import Footer from "./components/Footer";
 
 const App = () => {
   const [username, setUsername] = useState("");
@@ -14,9 +13,12 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetchClicked, setIsFetchClicked] = useState(false);
+  const [isSearchNewClicked, setIsSearchNewClicked] = useState(false);
 
   useEffect(() => {
-    if (username !== "") {
+    if (username !== "" && isFetchClicked) {
       fetchContributedRepositories(
         username,
         page,
@@ -25,7 +27,7 @@ const App = () => {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, isFetchClicked]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -38,6 +40,30 @@ const App = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     setShowBackToTop(scrollTop > 0);
   };
+
+  const handleFetchRepositories = () => {
+    setPage(1);
+    setRepositories([]);
+    setHasNextPage(true);
+    setIsFetchClicked(true);
+    setIsLoading(true);
+  };
+
+  const handleSearchNew = () => {
+    setIsSearchNewClicked(true);
+  };
+
+  useEffect(() => {
+    if (isFetchClicked) {
+      setIsLoading(false);
+    }
+  }, [isFetchClicked]);
+
+  useEffect(() => {
+    if (isSearchNewClicked) {
+      window.location.reload();
+    }
+  }, [isSearchNewClicked]);
 
   return (
     <>
@@ -62,42 +88,41 @@ const App = () => {
             aria-describedby="addon-wrapping"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            disabled={isFetchClicked}
           />
           <button
             className="btn btn-info"
             type="button"
             id="button-addon2"
-            onClick={() =>
-              fetchContributedRepositories(
-                username,
-                page,
-                setRepositories,
-                setHasNextPage
-              )
-            }
+            onClick={handleFetchRepositories}
+            disabled={isLoading || isFetchClicked}
           >
-            Fetch
+            {isLoading ? "Fetching..." : "Fetch"}
           </button>
         </div>
         <div>
-          {repositories.map((repo) => (
-            <div className="card mt-5" key={repo.id}>
-              <div className="card-body">
-                <a href={repo.clone_url} target="_blank" rel="noreferrer">
-                  <h3 className="card-title">{repo.name}</h3>
-                </a>
-                <p className="card-text">{repo.description}</p>
-                <button className="btn btn-info me-4">
-                  <i className="fa-regular fa-star iconfix"></i>
-                  {repo.stargazers_count}
-                </button>
-                <button className="btn btn-info">
-                  <i className="fa-solid fa-code-fork iconfix"></i>
-                  {repo.forks_count}
-                </button>
+          {repositories.length === 0 && !isLoading && isFetchClicked ? (
+            <p className="text-center mt-3">No Repositories Found.</p>
+          ) : (
+            repositories.map((repo) => (
+              <div className="card mt-5" key={repo.id}>
+                <div className="card-body">
+                  <a href={repo.clone_url} target="_blank" rel="noreferrer">
+                    <h3 className="card-title">{repo.name}</h3>
+                  </a>
+                  <p className="card-text">{repo.description}</p>
+                  <button className="btn btn-info me-4">
+                    <i className="fa-regular fa-star iconfix"></i>
+                    {repo.stargazers_count}
+                  </button>
+                  <button className="btn btn-info">
+                    <i className="fa-solid fa-code-fork iconfix"></i>
+                    {repo.forks_count}
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
         {repositories.length > 0 && (
           <div className="mt-4">
@@ -119,7 +144,6 @@ const App = () => {
             )}
           </div>
         )}
-
         {showBackToTop && (
           <button
             className="btn btn-info sticky-bottom btnpos"
@@ -128,8 +152,21 @@ const App = () => {
             <i className="fa-solid fa-circle-chevron-up iconfix"></i>
           </button>
         )}
+        {repositories.length > 0 && (
+          <div className="mt-4">
+            <button
+              className="btn btn-success"
+              onClick={handleSearchNew}
+              disabled={isSearchNewClicked}
+            >
+              Search New User
+            </button>
+          </div>
+        )}
       </div>
-      <Footer />
+      <footer className="text-center mt-3">
+        <h5>© 2023. All Rights Reserved By Contributed Repo Finder.</h5>
+      </footer>
     </>
   );
 };
