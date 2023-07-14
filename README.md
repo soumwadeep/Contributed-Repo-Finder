@@ -5,9 +5,10 @@ Welcome to Contributed Repo Finder, a React application that allows you to fetch
 ## Features
 
 - Enter the GitHub username in the input field and click on "Fetch" to retrieve the contributed repositories.
-- Each repository card displays the name, description, number of stars, and number of forks.
-- Use the pagination buttons to navigate through the repositories. Click the "Previous" button to go to the previous page, and the "Next" button to move to the next page.
-- A sticky "Back to Top" button appears when you scroll down, allowing you to quickly return to the top of the page.
+- Each repository card displays the name(which is linked to that repo url), description, number of stars, and number of forks.
+- Use the pagination buttons to navigate through the repositories. Click the "Previous(<)" button to go to the previous page, and the "Next(>)" button to move to the next page.
+- Use Search New User button to search for another user.
+- A sticky "Back to Top(⏏)" button appears when you scroll down, allowing you to quickly return to the top of the page.
 
 ## Getting Started
 
@@ -49,8 +50,9 @@ To run the Contributed Repo Finder locally, follow these steps:
 ![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/d88008a3-b734-4e60-b734-f5942842c5c6)
 
 
-### Pagination & Back To Top Button:
-![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/29f42d72-90c1-4236-81e7-62ed0bfff67a)
+### Pagination , Search New & Back To Top Button:
+![image](https://github.com/soumwadeep/Contributed-Repo-Finder/assets/69720515/9f12362c-173b-490a-8e38-c173d451b335)
+
 
 
 ## Acknowledgments
