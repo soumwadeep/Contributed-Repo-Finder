@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const App = () => {
+function App() {
   const [username, setUsername] = useState("");
   const [repositories, setRepositories] = useState([]);
 
@@ -30,11 +30,16 @@ const App = () => {
       </button>
       <ul>
         {repositories.map((repo) => (
-          <li key={repo.id}>{repo.name}</li>
+          <li key={repo.id}>
+            <h3>{repo.name}</h3>
+            <p>{repo.description}</p>
+            <p>Stars: {repo.stargazers_count}</p>
+            <p>Forks: {repo.forks_count}</p>
+          </li>
         ))}
       </ul>
     </div>
   );
-};
+}
 
 export default App;
