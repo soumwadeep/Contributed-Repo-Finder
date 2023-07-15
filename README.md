@@ -33,7 +33,7 @@ To run the Contributed Repo Finder locally, follow these steps:
    npm run dev
    ```
 
-6. Open your browser and navigate to `http://localhost:3000` to access the Contributed Repo Finder.
+6. Open your browser and navigate to `http://localhost:5173` to access the Contributed Repo Finder.
 
 ## Technologies Used
 
