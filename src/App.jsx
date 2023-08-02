@@ -152,17 +152,15 @@ const App = () => {
             <i className="fa-solid fa-circle-chevron-up iconfix"></i>
           </button>
         )}
-        {repositories.length > 0 && (
-          <div className="mt-4">
-            <button
-              className="btn btn-success"
-              onClick={handleSearchNew}
-              disabled={isSearchNewClicked}
-            >
-              Search New User
-            </button>
-          </div>
-        )}
+        <div className="mt-4">
+          <button
+            className="btn btn-success"
+            onClick={handleSearchNew}
+            disabled={isSearchNewClicked}
+          >
+            Search New User
+          </button>
+        </div>
       </div>
       <footer className="text-center mt-3">
         <h5>© 2023. All Rights Reserved By Contributed Repo Finder.</h5>

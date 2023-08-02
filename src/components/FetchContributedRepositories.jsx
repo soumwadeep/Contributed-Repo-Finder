@@ -10,7 +10,11 @@ export const fetchContributedRepositories = async (
     const response = await axios.get(
       `https://api.github.com/users/${username}/repos?type=all&page=${page}&per_page=30`
     );
-    setRepositories(response.data);
+    const sortedRepositories = response.data.sort((a, b) => {
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
+    setRepositories(sortedRepositories);
+    // setRepositories(response.data);
     setHasNextPage(response.data.length === 30);
   } catch (error) {
     console.error("Error fetching repositories:", error);
